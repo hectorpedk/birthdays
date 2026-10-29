@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Una lista personal de cumpleaños.">
+    <meta name="robots" content="noindex">
+    <title>Birthdays</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <h1>Birthdays</h1>
+
+      <section class="workspace" aria-label="Lista de cumpleaños">
+        <birthday-list class="list-panel">
+          <div class="list-heading">
+            <div>
+              <p class="eyebrow">CUMPLEAÑOS</p>
+              <h2>Los próximos</h2>
+            </div>
+            <span class="people-count" data-people-count>0 personas</span>
+          </div>
+          <p class="storage-message" data-storage-message role="status" hidden></p>
+          <div class="birthday-list" data-birthday-list aria-live="polite"></div>
+          <div class="empty-state" data-empty-state>
+            <span class="empty-symbol" aria-hidden="true">✳</span>
+            <p class="empty-title">Tu lista está vacía.</p>
+            <p>Añade un cumpleaños para empezar.</p>
+          </div>
+          <div class="backup-bar">
+            <p>Los datos se guardan en este navegador.</p>
+            <div class="backup-actions">
+              <button class="text-button" type="button" data-export>Descargar copia <span aria-hidden="true">↓</span></button>
+              <span class="backup-divider" aria-hidden="true"></span>
+              <button class="text-button" type="button" data-import>Restaurar JSON <span aria-hidden="true">↑</span></button>
+              <input class="visually-hidden" type="file" accept="application/json,.json" data-import-file aria-label="Selecciona una copia JSON">
+            </div>
+          </div>
+        </birthday-list>
+
+        <birthday-form class="add-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">TU AGENDA</p>
+              <h2>Añadir cumpleaños</h2>
+            </div>
+            <span class="heading-mark" aria-hidden="true">+</span>
+          </div>
+          <form class="birthday-form-content">
+            <label class="field field-name">
+              <span>Nombre</span>
+              <input name="name" type="text" maxlength="80" placeholder="¿Cómo se llama?" autocomplete="off" required>
+            </label>
+            <label class="field">
+              <span>Mes</span>
+              <select name="month" data-month required>
+                <option value="">Elige un mes</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Día</span>
+              <select name="day" data-day required disabled>
+                <option value="">Día</option>
+              </select>
+            </label>
+            <label class="field field-year">
+              <span>Año <span class="optional">(opcional)</span></span>
+              <input name="birthYear" type="number" inputmode="numeric" min="1900" placeholder="—">
+            </label>
+            <button class="button button-dark add-button" type="submit">Añadir <span aria-hidden="true">↗</span></button>
+          </form>
+          <p class="form-message" data-form-message aria-live="polite"></p>
+        </birthday-form>
+      </section>
+
+      <birthday-editor>
+        <dialog class="edit-dialog" aria-labelledby="edit-title">
+          <form class="dialog-content" data-edit-form>
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">ACTUALIZA LA FECHA</p>
+                <h2 id="edit-title">Editar cumpleaños</h2>
+              </div>
+              <button class="icon-button" type="button" data-close aria-label="Cerrar">×</button>
+            </div>
+            <input name="id" type="hidden" data-id>
+            <label class="field">
+              <span>Nombre</span>
+              <input name="name" type="text" maxlength="80" data-name required>
+            </label>
+            <div class="dialog-date-fields">
+              <label class="field">
+                <span>Mes</span>
+                <select name="month" data-month required></select>
+              </label>
+              <label class="field">
+                <span>Día</span>
+                <select name="day" data-day required></select>
+              </label>
+            </div>
+            <label class="field">
+              <span>Año <span class="optional">(opcional)</span></span>
+              <input name="birthYear" type="number" inputmode="numeric" min="1900" placeholder="—">
+            </label>
+            <p class="form-message" data-edit-message aria-live="polite"></p>
+            <div class="dialog-actions">
+              <button class="button button-light" type="button" data-close>Cancelar</button>
+              <button class="button button-dark" type="submit">Guardar cambios <span aria-hidden="true">↗</span></button>
+            </div>
+          </form>
+        </dialog>
+      </birthday-editor>
+    </main>
+  </body>
+</html>

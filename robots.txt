@@ -1,0 +1,3 @@
+# Los rastreadores deben poder leer la meta robots noindex de index.html.
+User-agent: *
+Allow: /
